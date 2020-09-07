@@ -47,6 +47,8 @@ public class StudentService {
     }
 
     public List<Group> reNameWithGroup(String groupName, String newName) {
+        if(newName.equals("")) return groups;
+        if(newName.equals(groupName)) return groups;
         groups = groups.stream().map(ele -> {
             if(ele.getName().equals(groupName)) {
                 ele.setName(newName);
