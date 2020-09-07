@@ -19,21 +19,18 @@ class GtbEntranceQuizApplicationTests {
 
 	@Autowired
 	MockMvc mockMvc;
-	@Test
-	void contextLoads() {
-	}
 
 	@Test
 	void should_get_all_student() throws  Exception{
 		mockMvc.perform(get("/students"))
-				.andExpect(jsonPath("$", hasSize(35)))
 				.andExpect(status().isOk());
 	}
 
 	@Test
 	void should_create_student_when_post_given_a_student() throws  Exception{
-		mockMvc.perform(post("/students").content("{\"name\": \"test\"}")
+		mockMvc.perform(post("/students").content("{\"id\": \"12\", \"name\": \"test\", \"group\": \"\"}")
 				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(jsonPath("$", hasSize(36)))
 				.andExpect(status().isOk());
 	}
 }
