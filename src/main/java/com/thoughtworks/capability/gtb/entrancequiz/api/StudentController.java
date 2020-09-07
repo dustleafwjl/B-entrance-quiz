@@ -41,4 +41,11 @@ public class StudentController {
         List<Group> groups = studentService.getAllGroups();
         return ResponseEntity.ok(groups);
     }
+
+    @CrossOrigin
+    @PatchMapping("/groups/{name}/rename")
+    public ResponseEntity<List<Group>> reNameWithGroup(@PathVariable String name, @RequestParam String text) {
+        List<Group> groups = studentService.reNameWithGroup(name, text);
+        return ResponseEntity.ok(groups);
+    }
 }

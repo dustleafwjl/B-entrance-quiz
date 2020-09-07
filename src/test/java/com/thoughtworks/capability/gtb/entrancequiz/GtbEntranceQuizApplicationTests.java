@@ -43,7 +43,11 @@ class GtbEntranceQuizApplicationTests {
 	@Test
 	void should_get_groups_when_get_group() throws  Exception{
 		mockMvc.perform(get("/groups"))
-				.andExpect(jsonPath("$", hasSize(6)))
+				.andExpect(status().isOk());
+	}
+	@Test
+	void should_rename_groups_when_patch_group() throws  Exception{
+		mockMvc.perform(patch("/groups/team1/rename?text=1234"))
 				.andExpect(status().isOk());
 	}
 }

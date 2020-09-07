@@ -19,6 +19,8 @@ public class StudentService {
     }
 
     public List<Student> createStudent(Student student) {
+        int size = getAllStudent().size();
+        student.setId(getAllStudent().get(size - 1).getId() + 1);
         StudentDto.students.add(student);
         return StudentDto.students;
     }
@@ -41,6 +43,20 @@ public class StudentService {
     }
 
     public List<Group> getAllGroups() {
+        return groups;
+    }
+
+    public List<Group> reNameWithGroup(String groupName, String newName) {
+        groups = groups.stream().map(ele -> {
+            if(ele.getName().equals(groupName)) {
+                ele.setName(newName);
+            }
+            return ele;
+        }).collect(Collectors.toList());
+        GroupDto.initGroup = GroupDto.initGroup.stream().map(ele -> {
+            if(ele.equals(groupName)) return newName;
+            return ele;
+        }).collect(Collectors.toList());
         return groups;
     }
 }

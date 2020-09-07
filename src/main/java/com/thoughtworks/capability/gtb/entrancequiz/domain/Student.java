@@ -2,13 +2,22 @@ package com.thoughtworks.capability.gtb.entrancequiz.domain;
 
 
 public class Student {
-    private String id;
+    private int id;
     private String name;
     private String group;
 
-    public Student(String name, String group) {
+    public Student(int id,String name, String group) {
+        this.id = id;
         this.name = name;
         this.group = group;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
