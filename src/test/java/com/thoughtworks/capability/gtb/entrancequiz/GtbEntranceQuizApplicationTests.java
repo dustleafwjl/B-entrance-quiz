@@ -27,7 +27,7 @@ class GtbEntranceQuizApplicationTests {
 
 	@Test
 	void should_create_student_when_post_given_a_student() throws  Exception{
-		mockMvc.perform(post("/students").content("{\"id\": \"12\", \"name\": \"test\", \"group\": \"\"}")
+		mockMvc.perform(post("/students").content("{\"name\": \"test\", \"group\": \"\"}")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(jsonPath("$", hasSize(36)))
 				.andExpect(status().isOk());
@@ -36,6 +36,13 @@ class GtbEntranceQuizApplicationTests {
 	@Test
 	void should_divided_student_when_patch() throws  Exception{
 		mockMvc.perform(patch("/students/divided"))
+				.andExpect(jsonPath("$", hasSize(6)))
+				.andExpect(status().isOk());
+	}
+
+	@Test
+	void should_get_groups_when_get_group() throws  Exception{
+		mockMvc.perform(get("/groups"))
 				.andExpect(jsonPath("$", hasSize(6)))
 				.andExpect(status().isOk());
 	}

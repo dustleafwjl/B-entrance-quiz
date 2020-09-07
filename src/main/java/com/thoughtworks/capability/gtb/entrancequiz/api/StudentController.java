@@ -34,4 +34,11 @@ public class StudentController {
         List<Group> groups = studentService.divideStudent();
         return ResponseEntity.ok(groups);
     }
+
+    @CrossOrigin
+    @GetMapping("/groups")
+    public ResponseEntity<List<Group>> getAllGroups() {
+        List<Group> groups = studentService.getAllGroups();
+        return ResponseEntity.ok(groups);
+    }
 }
