@@ -6,7 +6,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -22,6 +24,7 @@ class GtbEntranceQuizApplicationTests {
 	@Test
 	void should_get_all_student() throws  Exception{
 		mockMvc.perform(get("/students"))
+				.andExpect(jsonPath("$", hasSize(35)))
 				.andExpect(status().isOk());
 //				.andExpect()
 	}
