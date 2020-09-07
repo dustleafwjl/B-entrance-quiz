@@ -8,8 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.hasSize;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -31,6 +30,13 @@ class GtbEntranceQuizApplicationTests {
 		mockMvc.perform(post("/students").content("{\"id\": \"12\", \"name\": \"test\", \"group\": \"\"}")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(jsonPath("$", hasSize(36)))
+				.andExpect(status().isOk());
+	}
+
+	@Test
+	void should_divided_student_when_patch() throws  Exception{
+		mockMvc.perform(patch("/students/divided"))
+				.andExpect(jsonPath("$", hasSize(6)))
 				.andExpect(status().isOk());
 	}
 }

@@ -6,17 +6,9 @@ public class Student {
     private String name;
     private String group;
 
-    public Student(String id, String name, String group) {
-        this.id = id;
+    public Student(String name, String group) {
         this.name = name;
         this.group = group;
-    }
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
